@@ -44,7 +44,7 @@ yarn ios
 yarn android
 ```
 
-## Trying Deep Linking
+## Trying Deep Linking (for demo #5)
 
 In `App.tsx` make sure to run the Demo4 or Demo5 and then try the following commands (switch to `--android` if needed)
 

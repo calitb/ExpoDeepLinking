@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { Button, Platform, ScrollView, Text, View } from "react-native";
-import { DetailsProps, HomeProps, ModalProps, Routes, UnknownProps } from "../types";
+import { DetailsProps, HomeProps, ModalProps, Routes } from "../types";
 
 function HomeScreen({ navigation, route }: HomeProps) {
   React.useLayoutEffect(() => {
@@ -68,26 +68,6 @@ function ModalScreen({ navigation, route }: ModalProps) {
   );
 }
 
-function UnknownScreen({ navigation, route }: UnknownProps) {
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: Platform.OS==='ios' ? () => (
-        <Button onPress={() => navigation.goBack()} title="Go Back" />
-      ) : undefined,
-    });
-  }, [navigation]);
-
-  React.useEffect(()=>{
-    if (route.path) {
-      alert(`Failed to open ${route.path}`)
-    }
-  },[route.path])
-  
-  return (
-    <View />
-  );
-}
-
 const Stack = createNativeStackNavigator();
 
 export default function Demo3() {
@@ -97,7 +77,6 @@ export default function Demo3() {
       <Stack.Screen name={Routes.Details} component={DetailScreen} options={{headerBackTitle:'Back'}}/>
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name={Routes.Modal} component={ModalScreen} />
-        <Stack.Screen name={Routes.Unknown} component={UnknownScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
