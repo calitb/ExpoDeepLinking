@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { Button, ScrollView, Text, View } from "react-native";
+import { Button, Platform, ScrollView, Text, View } from "react-native";
 import { DetailsProps, HomeProps, ModalProps, Routes, UnknownProps } from "../types";
 
 function HomeScreen({ navigation, route }: HomeProps) {
@@ -57,9 +57,9 @@ function DetailScreen({ navigation, route }: DetailsProps) {
 function ModalScreen({ navigation, route }: ModalProps) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
+      headerLeft: Platform.OS==='ios' ? () => (
         <Button onPress={() => navigation.goBack()} title="Go Back" />
-      ),
+      ) : undefined,
     });
   }, [navigation]);
   
@@ -71,9 +71,9 @@ function ModalScreen({ navigation, route }: ModalProps) {
 function UnknownScreen({ navigation, route }: UnknownProps) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
+      headerLeft: Platform.OS==='ios' ? () => (
         <Button onPress={() => navigation.goBack()} title="Go Back" />
-      ),
+      ) : undefined,
     });
   }, [navigation]);
 
